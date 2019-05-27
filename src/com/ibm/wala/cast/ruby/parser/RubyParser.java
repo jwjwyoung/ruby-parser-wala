@@ -93,6 +93,711 @@ abstract public class RubyParser<T> implements TranslatorToCAst {
 	}
 
 	private final CAst Ast = new CAstImpl();
+	private class CAstVisitor implements NodeVisitor<CAstNode> {
+		private final RubyParser.WalkContext context;
+		private final WalaRubyParser parser;
+		
+		private CAstVisitor(RubyParser.WalkContext context, WalaRubyParser parser) {
+			this.context = context;
+			this.parser = parser;
+		}
+		private Position makePosition(Node p) {
+			String s = parser.getText(p.getPosition().getStartOffset(), p.getPosition().getEndOffset());
+			String[] lines = s.split("\n");
+			int last_col;
+			return null;
+		}
+		private CAstNode fail(RootNode tree) {
+// pretend it is a no-op for now.
+//			assert false : tree;
+			return Ast.makeNode(CAstNode.EMPTY);
+		}
+		@Override
+		public CAstNode visitAliasNode(AliasNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitAndNode(AndNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitArgsCatNode(ArgsCatNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitArgsNode(ArgsNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitArgsPushNode(ArgsPushNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitArgumentNode(ArgumentNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitArrayNode(ArrayNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitAttrAssignNode(AttrAssignNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitBackRefNode(BackRefNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitBeginNode(BeginNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitBignumNode(BignumNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitBlockArg18Node(BlockArg18Node arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitBlockArgNode(BlockArgNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitBlockNode(BlockNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitBlockPassNode(BlockPassNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitBreakNode(BreakNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitCallNode(CallNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitCaseNode(CaseNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitClassNode(ClassNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitClassVarAsgnNode(ClassVarAsgnNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitClassVarDeclNode(ClassVarDeclNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitClassVarNode(ClassVarNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitColon2Node(Colon2Node arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitColon3Node(Colon3Node arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitCommentNode(CommentNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitComplexNode(ComplexNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitConstDeclNode(ConstDeclNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitConstNode(ConstNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitDAsgnNode(DAsgnNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitDRegxNode(DRegexpNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitDStrNode(DStrNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitDSymbolNode(DSymbolNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitDVarNode(DVarNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitDXStrNode(DXStrNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitDefinedNode(DefinedNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitDefnNode(DefnNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitDefsNode(DefsNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitDotNode(DotNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitEncodingNode(EncodingNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitEnsureNode(EnsureNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitEvStrNode(EvStrNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitFCallNode(FCallNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitFalseNode(FalseNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitFixnumNode(FixnumNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitFlipNode(FlipNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitFloatNode(FloatNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitForNode(ForNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitGlobalAsgnNode(GlobalAsgnNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitGlobalVarNode(GlobalVarNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitHashNode(HashNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitIfNode(IfNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitImplicitNilNode(ImplicitNilNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitInstAsgnNode(InstAsgnNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitInstVarNode(InstVarNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitIterNode(IterNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitKeywordArgNode(KeywordArgNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitKeywordRestArgNode(KeywordRestArgNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitLambdaNode(LambdaNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitListNode(ListNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitLiteralNode(LiteralNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitLocalAsgnNode(LocalAsgnNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitLocalVarNode(LocalVarNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitMatch2Node(Match2Node arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitMatch3Node(Match3Node arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitMatchNode(MatchNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitMethodNameNode(MethodNameNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitModuleNode(ModuleNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitMultipleAsgnNode(MultipleAsgnNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitNewlineNode(NewlineNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitNextNode(NextNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitNilNode(NilNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitNotNode(NotNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitNthRefNode(NthRefNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitOpAsgnAndNode(OpAsgnAndNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitOpAsgnNode(OpAsgnNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitOpAsgnOrNode(OpAsgnOrNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitOpElementAsgnNode(OpElementAsgnNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitOptArgNode(OptArgNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitOrNode(OrNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitPostExeNode(PostExeNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitPreExeNode(PreExeNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitRationalNode(RationalNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitRedoNode(RedoNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitRegexpNode(RegexpNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitRequiredKeywordArgumentValueNode(RequiredKeywordArgumentValueNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitRescueBodyNode(RescueBodyNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitRescueNode(RescueNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitRestArgNode(RestArgNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitRetryNode(RetryNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitReturnNode(ReturnNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitRootNode(RootNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitSClassNode(SClassNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitSValueNode(SValueNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitSelfNode(SelfNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitSplatNode(SplatNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitStrNode(StrNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitSuperNode(SuperNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitSymbolNode(SymbolNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitSyntaxNode(SyntaxNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitToAryNode(ToAryNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitTrueNode(TrueNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitUnaryCallNode(UnaryCallNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitUndefNode(UndefNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitUntilNode(UntilNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitVAliasNode(VAliasNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitVCallNode(VCallNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitWhenNode(WhenNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitWhileNode(WhileNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitXStrNode(XStrNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitYieldNode(YieldNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitZArrayNode(ZArrayNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public CAstNode visitZSuperNode(ZSuperNode arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+		
+	}
+	protected abstract WalaRubyParser makeParser() throws IOException;
+	
+	protected abstract Reader getReader() throws IOException;
+	
+	protected abstract String scriptName();
+
+	protected abstract URL getParsedURL() throws IOException;
+//
+//	private final CAstTypeDictionaryImpl<String> types;
+//	
+//	protected Parser(CAstTypeDictionaryImpl<String> types) {
+//		this.types = types;
+//	}
 	
 	public void print(Node ast) {
 		System.err.println(ast.getClass());
