@@ -105,7 +105,66 @@ abstract public class RubyParser<T> implements TranslatorToCAst {
 			String s = parser.getText(p.getPosition().getStartOffset(), p.getPosition().getEndOffset());
 			String[] lines = s.split("\n");
 			int last_col;
-			return null;
+			int last_line = p.getPosition().getStartLine() + lines.length - 1;
+			if ("".equals(s) || lines.length <= 1) {
+				last_col = p.getPosition().getStartLine() + (p.getPosition().getEndOffset() - p.getPosition().getStartOffset());
+			} else {
+				assert (lines.length > 1);
+				last_col = lines[lines.length-1].length();
+			} 
+
+			return new AbstractSourcePosition() {
+
+				@Override
+				public URL getURL() {
+					try {
+						return getParsedURL();
+					} catch (IOException e) {
+						assert false : e;
+						return null;
+					}
+				}
+
+	
+				@Override
+				public int getFirstLine() {
+					return p.getPosition().getStartLine();
+				}
+
+				@Override
+				public int getFirstCol() {
+					return p.getPosition().getStartOffset();
+				}
+				
+				@Override
+				public int getLastLine() {
+					return last_line;
+				}
+
+				@Override
+				public int getLastCol() {
+					return last_col;
+				}
+
+				@Override
+				public int getFirstOffset() {
+					return p.getPosition().getStartOffset();
+				}
+
+				@Override
+				public int getLastOffset() {
+					return p.getPosition().getEndOffset();
+				}
+
+
+
+				@Override
+				public Reader getReader() throws IOException {
+					// TODO Auto-generated method stub
+					return null;
+				}
+				
+			};
 		}
 		private CAstNode fail(RootNode tree) {
 // pretend it is a no-op for now.
