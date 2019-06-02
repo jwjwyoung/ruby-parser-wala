@@ -270,6 +270,10 @@ abstract public class RubyParser<T> implements TranslatorToCAst {
 		@Override
 		public CAstNode visitCallNode(CallNode arg0) {
 			// TODO Auto-generated method stub
+			int i = 0; 
+			CAstNode args[] = new CAstNode[1]; // to do set the size correctly
+			args[i++] = Ast.makeNode(CAstNode.EMPTY);
+			
 			return null;
 		}
 

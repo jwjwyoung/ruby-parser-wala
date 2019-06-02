@@ -15,7 +15,7 @@ import org.antlr.runtime.CharStream;
 import org.antlr.runtime.CommonTokenStream;
 import org.antlr.runtime.TokenRewriteStream;
 
-public class WalaRubyParser  {
+public class WalaRubyParser extends Parser {
 
 	private String text = null;
 	private final Set<Exception> errors = HashSetFactory.make();
