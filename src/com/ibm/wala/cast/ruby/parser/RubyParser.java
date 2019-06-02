@@ -81,17 +81,28 @@ abstract public class RubyParser<T> implements TranslatorToCAst {
 			this.ast = ast;
 		}
 		
-//		@Override
-//		public RootNode top() {
-//			return (RootNode) ast;
-//		}
+		@Override
+		public RootNode top() {
+			return (RootNode) ast;
+		}
 
 		public WalkContext getParent() {
 			assert false;
 			return null;
+		
 		}
 	}
+	private class LoopContext extends TranslatorToCAst.LoopContext<WalkContext, RootNode> implements WalkContext {
 
+		LoopContext(WalkContext parent, RootNode breakTo, RootNode continueTo) {
+			super(parent, breakTo, continueTo, null);
+		}
+
+		@Override
+		public WalkContext getParent() {
+			return (WalkContext) super.getParent();
+		}
+	 }
 	private final CAst Ast = new CAstImpl();
 	private class CAstVisitor implements NodeVisitor<CAstNode> {
 		private final RubyParser.WalkContext context;
@@ -273,7 +284,6 @@ abstract public class RubyParser<T> implements TranslatorToCAst {
 			int i = 0; 
 			CAstNode args[] = new CAstNode[1]; // to do set the size correctly
 			args[i++] = Ast.makeNode(CAstNode.EMPTY);
-			
 			return null;
 		}
 
@@ -454,12 +464,14 @@ abstract public class RubyParser<T> implements TranslatorToCAst {
 		@Override
 		public CAstNode visitForNode(ForNode arg0) {
 			// TODO Auto-generated method stub
+			CAstVisitor child = new CAstVisitor(x, parser);
 			return null;
 		}
 
 		@Override
 		public CAstNode visitGlobalAsgnNode(GlobalAsgnNode arg0) {
 			// TODO Auto-generated method stub
+		   
 			return null;
 		}
 
