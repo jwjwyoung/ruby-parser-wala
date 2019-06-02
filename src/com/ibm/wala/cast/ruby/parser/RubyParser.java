@@ -103,6 +103,49 @@ abstract public class RubyParser<T> implements TranslatorToCAst {
 			return (WalkContext) super.getParent();
 		}
 	 }
+	private static class FunctionContext extends TranslatorToCAst.FunctionContext<WalkContext, RootNode> implements WalkContext {
+		private final AbstractCodeEntity fun;
+		
+		public WalkContext getParent() {
+			return parent;
+		}
+		
+		private FunctionContext(WalkContext parent, AbstractCodeEntity fun, RootNode s) {
+			super(parent, s);
+			this.fun = fun;
+		}
+
+		@Override
+		public CAstEntity entity() {
+			return fun;
+		}
+
+		@Override
+		public CAstNodeTypeMapRecorder getNodeTypeMap() {
+			return fun.getNodeTypeMap();
+		}
+
+		@Override
+		public CAstSourcePositionRecorder pos() {
+			return fun.getSourceMap();
+		}
+
+		@Override
+		public CAstControlFlowRecorder cfg() {
+			return fun.getControlFlow();
+		}
+
+		@Override
+		public void addScopedEntity(CAstNode construct, CAstEntity e) {
+			fun.addScopedEntity(construct, e);
+		}
+
+		@Override
+		public Map<CAstNode, Collection<CAstEntity>> getScopedEntities() {
+			return fun.getAllScopedEntities();
+		}
+	}
+
 	private final CAst Ast = new CAstImpl();
 	private class CAstVisitor implements NodeVisitor<CAstNode> {
 		private final RubyParser.WalkContext context;
@@ -464,7 +507,14 @@ abstract public class RubyParser<T> implements TranslatorToCAst {
 		@Override
 		public CAstNode visitForNode(ForNode arg0) {
 			// TODO Auto-generated method stub
+			RootNode b = new RootNode(null,null,null);
+			RootNode c = new RootNode(null,null,null);
+			LoopContext x = new LoopContext(context, b, c);
 			CAstVisitor child = new CAstVisitor(x, parser);
+			CAstNode breakStmt = b.accept(this);
+			context.cfg().map(b, breakStmt);
+			CAstNode continueStmt = c.accept(this);
+			context.cfg().map(c, continueStmt);
 			return null;
 		}
 
