@@ -515,9 +515,38 @@ abstract public class RubyParser<T> implements TranslatorToCAst {
 			context.cfg().map(b, breakStmt);
 			CAstNode continueStmt = c.accept(this);
 			context.cfg().map(c, continueStmt);
+			int i = 0;
+			int size = 1;
+			CAstNode[] body = new CAstNode[size];
+			Object g = null; //TBD 
+//			return Ast.makeNode(CAstNode.BLOCK_EXPR, doGenerators(Collections.singletonList(g), Ast.makeNode(CAstNode.BLOCK_EXPR, 
+//					Ast.makeNode(CAstNode.BLOCK_EXPR, body),
+//					continueStmt)),
+//			    breakStmt);
 			return null;
 		}
-
+		private CAstOperator translateOperator(String next) {
+			if (next.equals("=="))
+				return CAstOperator.OP_EQ;
+			if (next.equals(">"))
+				return CAstOperator.OP_GT;
+			if (next.equals(">="))
+				return CAstOperator.OP_GE;
+			if (next.equals("<"))
+				return CAstOperator.OP_LT;
+			if (next.equals("<="))
+				return CAstOperator.OP_LE;
+			if (next.equals("!="))
+				return CAstOperator.OP_NE;
+			if (next.equals("in"))
+				return CAstOperator.OP_IN;
+			if (next.equals("&"))
+				return CAstOperator.OP_BIT_AND;
+			if (next.equals("|"))
+				return CAstOperator.OP_BIT_OR;
+			return null;		
+			
+		}
 		@Override
 		public CAstNode visitGlobalAsgnNode(GlobalAsgnNode arg0) {
 			// TODO Auto-generated method stub
@@ -910,6 +939,23 @@ abstract public class RubyParser<T> implements TranslatorToCAst {
 		}
 		
 	}
+	
+	private CAstType comprehension = new CAstType() {
+
+		@Override
+		public String getName() {
+			return "comprehension";
+		}
+
+		@Override
+		public Collection<CAstType> getSupertypes() {
+			return Collections.singleton(codeBody);
+		}
+		
+	};
+	
+
+
 	protected abstract WalaRubyParser makeParser() throws IOException;
 	
 	protected abstract Reader getReader() throws IOException;
