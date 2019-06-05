@@ -317,10 +317,19 @@ abstract public class RubyParser<T> implements TranslatorToCAst {
 
 		@Override
 		public CAstNode visitBreakNode(BreakNode arg0) {
-			// TODO Auto-generated method stub
-			return null;
-		}
+			Node target = context.getBreakFor(null);
+			CAstNode gt = notePosition(Ast.makeNode(CAstNode.GOTO), arg0);
+			context.cfg().map(arg0, gt);
+			context.cfg().add(arg0, target, null);
+			return gt;
 
+		}
+		
+		private CAstNode notePosition(CAstNode n, Node p) {
+			Position pos = makePosition(p);
+			pushSourcePosition(context, n, pos);
+			return n;
+		}
 		@Override
 		public CAstNode visitCallNode(CallNode arg0) {
 			// TODO Auto-generated method stub
@@ -518,11 +527,6 @@ abstract public class RubyParser<T> implements TranslatorToCAst {
 			int i = 0;
 			int size = 1;
 			CAstNode[] body = new CAstNode[size];
-			Object g = null; //TBD 
-//			return Ast.makeNode(CAstNode.BLOCK_EXPR, doGenerators(Collections.singletonList(g), Ast.makeNode(CAstNode.BLOCK_EXPR, 
-//					Ast.makeNode(CAstNode.BLOCK_EXPR, body),
-//					continueStmt)),
-//			    breakStmt);
 			return null;
 		}
 		private CAstOperator translateOperator(String next) {
@@ -544,6 +548,22 @@ abstract public class RubyParser<T> implements TranslatorToCAst {
 				return CAstOperator.OP_BIT_AND;
 			if (next.equals("|"))
 				return CAstOperator.OP_BIT_OR;
+			if (next.equals("*"))
+				return CAstOperator.OP_MUL;
+			if (next.equals("+"))
+				return CAstOperator.OP_ADD;
+			if (next.equals("-"))
+				return CAstOperator.OP_SUB;
+			if (next.equals("/"))
+				return CAstOperator.OP_DIV;
+			if (next.equals("<<"))
+				return CAstOperator.OP_LSH;
+			if (next.equals(">>"))
+				return CAstOperator.OP_RSH;
+			if (next.equals("%"))
+				return CAstOperator.OP_MOD;
+			if (next.equals("==="))
+				return CAstOperator.OP_STRICT_EQ;
 			return null;		
 			
 		}
