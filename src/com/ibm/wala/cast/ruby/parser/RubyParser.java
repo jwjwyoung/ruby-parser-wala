@@ -267,9 +267,10 @@ abstract public class RubyParser<T> implements TranslatorToCAst {
 			return null;
 		}
 
+		private int assign = 0; 
 		@Override
 		public CAstNode visitAttrAssignNode(AttrAssignNode arg0) {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 
@@ -317,7 +318,7 @@ abstract public class RubyParser<T> implements TranslatorToCAst {
 
 		@Override
 		public CAstNode visitBreakNode(BreakNode arg0) {
-			Node target = context.getBreakFor(null);
+			Node target = (Node)context.getBreakFor(null);
 			CAstNode gt = notePosition(Ast.makeNode(CAstNode.GOTO), arg0);
 			context.cfg().map(arg0, gt);
 			context.cfg().add(arg0, target, null);
@@ -342,7 +343,8 @@ abstract public class RubyParser<T> implements TranslatorToCAst {
 		@Override
 		public CAstNode visitCaseNode(CaseNode arg0) {
 			// TODO Auto-generated method stub
-			return null;
+			CAstNode result = Ast.makeNode(CAstNode.SWITCH);
+			return result;
 		}
 
 		@Override
@@ -498,7 +500,9 @@ abstract public class RubyParser<T> implements TranslatorToCAst {
 		@Override
 		public CAstNode visitFixnumNode(FixnumNode arg0) {
 			// TODO Auto-generated method stub
-			return null;
+			Long value = arg0.getValue();
+			CAstNode result = Ast.makeConstant(value);
+			return result;
 		}
 
 		@Override
@@ -510,7 +514,9 @@ abstract public class RubyParser<T> implements TranslatorToCAst {
 		@Override
 		public CAstNode visitFloatNode(FloatNode arg0) {
 			// TODO Auto-generated method stub
-			return null;
+			Double value = arg0.getValue();
+			CAstNode result = Ast.makeConstant(value);
+			return result;
 		}
 
 		@Override
@@ -649,13 +655,17 @@ abstract public class RubyParser<T> implements TranslatorToCAst {
 		@Override
 		public CAstNode visitLocalAsgnNode(LocalAsgnNode arg0) {
 			// TODO Auto-generated method stub
-			return null;
+			CAstNode v = notePosition(arg0.getValue().accept(this), arg0.getValue());
+			LocalVarNode varNode = new LocalVarNode(arg0.getPosition(), arg0.getIndex(), arg0.getLexicalName());
+			CAstNode varAst = visitLocalVarNode(varNode);
+			CAstNode result = Ast.makeNode(CAstNode.ASSIGN, varAst, v);
+			return result;
 		}
 
 		@Override
 		public CAstNode visitLocalVarNode(LocalVarNode arg0) {
 			// TODO Auto-generated method stub
-			return null;
+			return Ast.makeNode(CAstNode.VAR, Ast.makeConstant(arg0.getName()));
 		}
 
 		@Override
